@@ -1,7 +1,7 @@
 import React,{useState} from 'react';
 import "./Auth.css"
 
-function Auth(props) {
+function Auth() {
 
   const [data,setData] = useState({
     email:"",
@@ -25,6 +25,12 @@ function Auth(props) {
       <form className="Auth-form" onSubmit={submitHandler}>
         <div className="Auth-form-content">
           <h3 className="Auth-form-title">Sign In</h3>
+            {/* <div className="text-center">
+              Not registered yet?{" "}
+              <span className="link-primary" onClick={changeAuthMode}>
+                Sign Up
+              </span>
+            </div> */}
           <div className="form-group mt-3">
             <label>Email address</label>
             <input
