@@ -1,4 +1,4 @@
-.Auth-form-container {
+.container {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -6,7 +6,7 @@
     height: 80vh;
   }
   
-  .Auth-form {
+  .form {
     width: 420px;
     box-shadow: rgb(0 0 0 / 16%) 1px 1px 10px;
     padding-top: 30px;
@@ -15,12 +15,12 @@
     background-color: white;
   }
   
-  .Auth-form-content {
+  .content {
     padding-left: 12%;
     padding-right: 12%;
   }
   
-  .Auth-form-title {
+  .title {
     text-align: center;
     margin-bottom: 1em;
     font-size: 24px;
@@ -32,4 +32,15 @@
     font-size: 14px;
     font-weight: 600;
     color: rgb(34, 34, 34);
+  }
+
+  .error{
+    text-align: center;
+    font-weight: bold;
+    font-size: 0.875rem;
+    color: rgb(175, 15, 15);
+  }
+
+  button:disabled {
+    background-color: grey !important;
   }
