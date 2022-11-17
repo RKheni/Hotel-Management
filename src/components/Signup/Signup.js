@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import styles from "./Signup.module.css"
 import {Link, useNavigate} from 'react-router-dom'
-// import {registerCollectionRef} from '../../lib/firestore.collections'
-// import {addDoc} from 'firebase/firestore';
+import {signupCollectionRef} from '../../lib/firestore.collections'
+import {addDoc} from 'firebase/firestore';
 import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
 import { auth } from '../../lib/init-firebase';
 
@@ -15,7 +15,7 @@ function Signup() {
   const [confirmPassword,setConfirmPassword] = useState('');
 
   const [errorMsg, setErrorMsg] = useState('');
-  const [submitButtonDisabled, setSubmitButtonDisabled] = useState(false);
+  // const [submitButtonDisabled, setSubmitButtonDisabled] = useState(false);
 
   const handleInputChange = e => {
     const {id , value} = e.target;
@@ -43,27 +43,32 @@ function Signup() {
         }
         setErrorMsg('');
 
-        setSubmitButtonDisabled(true);
+        // setSubmitButtonDisabled(true);
+
         if (password === confirmPassword){
-          // addDoc(registerCollectionRef, {fullName, email, password, confirmPassword}).then(response => {
-          //   console.log(' ID:' + response.id)
-          //   console.log('User Data: ' + fullName, email, password, confirmPassword);   
-          // }).catch(error => console.log(error.message));
+          // Create a New user in Firestore Authentication
           createUserWithEmailAndPassword(auth, email, password)
           .then(async(res) => {
-            setSubmitButtonDisabled(false);
+            // setSubmitButtonDisabled(false);
             const user = res.user;
             await updateProfile(user, {
               displayName: fullName,
             })
+
+            // Add a created user to firestore --- signup
+            addDoc(signupCollectionRef, {fullName, email, password, confirmPassword}).then(response => {
+              console.log(' ID:' + response.id)
+              console.log('User Data: ' + fullName, email, password, confirmPassword);   
+            }).catch(error => console.log(error.message));
+
             // Navigate to Home page
             navigate('/');
           }).catch((err) => {
-            setSubmitButtonDisabled(false);
+            // setSubmitButtonDisabled(false);
             setErrorMsg(err.message)
           });
 
-          console.log('Sign Up succesfully!');
+          console.log('Sign Up successfully!');
         } else {
           setErrorMsg("Password not match!");
         }
@@ -127,7 +132,9 @@ function Signup() {
             <b className={styles.error}>{errorMsg}</b>
           </div>
           <div className="d-grid gap-2 mt-3">
-            <button type="submit" className="btn btn-primary" disabled={submitButtonDisabled}>
+            <button type="submit" className="btn btn-primary" 
+            // disabled={submitButtonDisabled}
+            >
               Sign Up
             </button>
           </div>

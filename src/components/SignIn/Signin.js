@@ -3,7 +3,6 @@ import styles from "./Signin.module.css"
 import {Link, useNavigate} from 'react-router-dom'
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../../lib/init-firebase';
-// import {registerCollectionRef} from '../../lib/firestore.collections'
 
 function Login() {
 
@@ -47,7 +46,7 @@ function Login() {
             setErrorMsg(err.message)
         });
 
-        console.log('Sign In succesfully!');
+        console.log('Sign In successfully!');
   }
 
   return (

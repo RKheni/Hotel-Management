@@ -5,6 +5,7 @@ import Home from "./components/Home/Home"
 import SignIn from "./components/SignIn/Signin.js"
 import Navbar from './components/Navbar';
 import SignUp from './components/Signup/Signup.js';
+import BookRoom from './components/BookRoom/BookRoom.js'
 import { auth } from './lib/init-firebase';
 
 function App() {
@@ -25,6 +26,9 @@ function App() {
           <Navbar/>
           <Routes>
             <Route path="/" element={<Home fullName={userName} />} />
+            <Route path="/bookroom" element={<BookRoom/>} />
+
+
             <Route path="/signin" element={<SignIn/>} />
             <Route path="/signup" element={<SignUp/>} />
 

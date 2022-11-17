@@ -13,9 +13,15 @@ function Navbar() {
                 <div className="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                         <li className="nav-item"><Link className="nav-link active" aria-current="page" to="/">Home</Link></li>
-                        <li className="nav-item"><Link className="nav-link" to="/signin">Sign In</Link></li>
-                        <li className="nav-item"><Link className="nav-link" to="/signup">Signup</Link></li>
+                        <li className="nav-item"><Link className="nav-link" to="/bookroom">Book Room</Link></li>
                     </ul>
+
+                    <form className="d-flex" role="search">
+                    <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li className="nav-item"><Link className="nav-link" to="/signin">Sign In</Link></li>
+                        <li className="nav-item"><Link className="nav-link" to="/signup">Sign Up</Link></li>
+                    </ul>
+                    </form>
                 </div>
             </div>
         </nav>
