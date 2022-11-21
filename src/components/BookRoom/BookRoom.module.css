@@ -1,71 +1,3 @@
-html, body {
-  width: 100%;
-  height: 100%;
-  margin: 0;
-}
-
-.SplitPane {
-  width: 100%;
-  height: 120vh;
-}
-
-.SplitPaneLeft {
-  width: 20%;
-  height: 100%;
-  text-align: center;
-  padding-top: 5%;
-  float: left;
-  background: rgb(240, 240, 243);
-}
-
-.SplitPaneRight {
-  width: 80%;
-  height: 100%;
-  /* padding-top: 5%; */
-  float: right;
-  background: rgb(254, 255, 255);
-}
-
-.containerLeft {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  width: 20vw;
-  height: 80vh;
-  padding-right: 5%;
-}
-
-.containerRight {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100vw;
-  height: 80vh;
-  padding-right: 25%;
-}
-
-.form {
-  width: 420px;
-  box-shadow: rgb(0 0 0 / 16%) 1px 1px 10px;
-  padding-top: 30px;
-  padding-bottom: 20px;
-  border-radius: 8px;
-  background-color: white;
-}
-
-.content {
-  padding-left: 12%;
-  padding-right: 12%;
-}
-
-.title {
-  text-align: center;
-  margin-bottom: 1em;
-  font-size: 24px;
-  color: rgb(34, 34, 34);
-  font-weight: 800;
-}
-
 label {
   font-size: 14px;
   font-weight: 600;
@@ -78,7 +10,10 @@ label {
   font-size: 0.875rem;
   color: rgb(175, 15, 15);
 }
-
+button {
+  margin-left: 7%;
+  margin-right: 7%;
+}
 button:disabled {
   background-color: grey !important;
 }
@@ -88,8 +23,4 @@ img {
   height: 20px;
   max-width: 30px;
   max-height: 30px;
-}
-
-p {
-  padding-left: 10px;
 }

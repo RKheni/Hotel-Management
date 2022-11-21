@@ -7,6 +7,8 @@ import Navbar from './components/Navbar';
 import SignUp from './components/Signup/Signup.js';
 import BookRoom from './components/BookRoom/BookRoom.js'
 import { auth } from './lib/init-firebase';
+import Rooms from './components/Rooms/Rooms.js';
+import About from './components/About/About.js';
 
 function App() {
   
@@ -25,13 +27,15 @@ function App() {
       <Router>
           <Navbar/>
           <Routes>
+            {/* Left Side Links */}
             <Route path="/" element={<Home fullName={userName} />} />
             <Route path="/bookroom" element={<BookRoom/>} />
+            <Route path="/rooms" element={<Rooms/>} />
+            <Route path="/about" element={<About/>} />
 
-
+            {/* Right Side Links */}
             <Route path="/signin" element={<SignIn/>} />
             <Route path="/signup" element={<SignUp/>} />
-
           </Routes>
       </Router>
     </div>
