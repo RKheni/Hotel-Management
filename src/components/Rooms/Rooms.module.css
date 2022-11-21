@@ -33,10 +33,7 @@ button:hover {
     width: flex;
     max-width: 1050px;
     box-shadow: rgb(0 0 0 / 16%) 1px 1px 10px;
-    padding-top: 30px;
-    padding-bottom: 20px;
-    padding-left: 3%;
-    padding-right: 3%;
+    padding: 3% 2% 2% 2%;
     border-radius: 8px;
     background-color: white;
   }
