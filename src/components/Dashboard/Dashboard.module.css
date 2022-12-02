@@ -28,24 +28,23 @@ img {
   font-size: 24px;
   color: rgb(34, 34, 34);
   font-weight: 800;
-  margin-top: 20%;
+  margin-top: 30%;
 }
 
 .containerRight {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding-right: 20%;
+  padding-right: 3%;
   padding-top: 5%;
+  margin-right: 2%;
+  margin-left: 5%;
 }
 
 .form {
   width: 450px;
   box-shadow: rgb(0 0 0 / 16%) 1px 1px 10px;
-  padding-top: 30px;
-  padding-bottom: 20px;
-  padding-left: 3%;
-  padding-right: 3%;
+  padding: 30px 3% 20px 3%;
   border-radius: 8px;
   background-color: white;
 }

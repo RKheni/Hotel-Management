@@ -27,15 +27,17 @@ function App() {
       <Router>
           <Navbar/>
           <Routes>
-            {/* Left Side Links */}
+            {/* Navbar Left Side Links */}
             <Route path="/" element={<Home fullName={userName} />} />
-            <Route path="/bookroom" element={<BookRoom/>} />
-            <Route path="/rooms" element={<Rooms/>} />
             <Route path="/about" element={<About/>} />
 
-            {/* Right Side Links */}
+            {/* Navbar Right Side Links */}
             <Route path="/signin" element={<SignIn/>} />
             <Route path="/signup" element={<SignUp/>} />
+
+            {/* Sidebar Links */}
+            <Route path="/bookroom" element={<BookRoom/>} />
+            <Route path="/rooms" element={<Rooms/>} />
           </Routes>
       </Router>
     </div>

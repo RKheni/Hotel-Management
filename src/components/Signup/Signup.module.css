@@ -13,6 +13,7 @@
     padding-bottom: 20px;
     border-radius: 8px;
     background-color: white;
+    margin-top: 12%;
   }
   
   .content {
@@ -39,8 +40,4 @@
     font-weight: bold;
     font-size: 0.875rem;
     color: rgb(175, 15, 15);
-  }
-
-  button:disabled {
-    background-color: grey !important;
   }

@@ -12,7 +12,6 @@ function Login() {
   const [password,setPassword] = useState('');
 
   const [errorMsg, setErrorMsg] = useState('');
-  const [submitButtonDisabled, setSubmitButtonDisabled] = useState(false);
 
   const handleInputChange = e => {
     const {id , value} = e.target;
@@ -34,19 +33,14 @@ function Login() {
       }
       setErrorMsg('');
 
-      setSubmitButtonDisabled(true);
       signInWithEmailAndPassword(auth, email, password)
         .then(async(res) => {
-          setSubmitButtonDisabled(false);
             
           // Navigate to Home page
           navigate('/');
         }).catch((err) => {
-            setSubmitButtonDisabled(false);
             setErrorMsg(err.message)
         });
-
-        console.log('Sign In successfully!');
   }
 
   return (
@@ -85,7 +79,7 @@ function Login() {
             <b className={styles.error}>{errorMsg}</b>
           </div>
           <div className="d-grid gap-2 mt-3">
-            <button type="submit" className="btn btn-primary" disabled={submitButtonDisabled}>
+            <button type="submit" className="btn btn-primary">
               Sign In
             </button>
           </div>

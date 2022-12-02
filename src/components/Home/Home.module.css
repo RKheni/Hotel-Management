@@ -1,10 +1,11 @@
 .form {
-  width: auto;
+  width: flex;
   max-width: 500px;
+  text-align: center;
   box-shadow: rgb(0 0 0 / 16%) 1px 1px 10px;
   padding: 2% 3% 1% 3%;
   margin-top: 15%;
-  margin-left: 25%;
+  margin-left: 20%;
   border-radius: 8px;
   background-color: white;
 }
