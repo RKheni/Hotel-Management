@@ -4,13 +4,15 @@ import Dashboard from '../Dashboard/Dashboard';
 import dashboardStyles from "../Dashboard/Dashboard.module.css"
 import {bookroomCollectionRef} from '../../lib/firestore.collections'
 import { addDoc } from 'firebase/firestore';
-// import Select from 'react-select';
+import Select from 'react-select';
 import { storage } from '../../lib/init-firebase'
 import { ref, uploadBytes } from 'firebase/storage'
 import { v4 } from 'uuid'
+import { useNavigate } from 'react-router-dom'
 
 
 function BookRoom() {
+  const navigate = useNavigate();
 
   const roomTypes = [
     { value: 'Deluxe', label: 'Deluxe' },
@@ -33,7 +35,7 @@ function BookRoom() {
 
   const [checkInDate, setCheckInDate] = useState('');
   const [checkOutDate, setCheckOutDate] = useState('');
-  const [roomType,setRoomType] = useState('deluxe');
+  const [roomType,setRoomType] = useState('Deluxe');
   const [occupancy,setOccupancy] = useState('');
   const [noOfRoom,setNoOfRoom] = useState('');
   const [roomSize,setRoomSize] = useState('');
@@ -72,28 +74,31 @@ function BookRoom() {
     }
   }
 
-  const handleSelect = function(selectedItems) {
-        const amenitiesArr = [];
-        for (let i=0; i<selectedItems.length; i++) {
-          amenitiesArr.push(selectedItems[i].value);
-        }
-        setAmenitie(amenitiesArr);
+  const handleChange = (e) => {
+    setAmenitie(Array.isArray(e) ? e.map(x => x.value) : []);
   }
 
   // Store Booking Information 
-  const handleSignup  = e => {
+  const handleBookRoom  = e => {
     e.preventDefault();
       // If Input value is empty display Error Massage
-      if(checkInDate === '' || checkOutDate === '' || roomType === '' || occupancy === 0 || noOfRoom === 0 || roomSize === '' || noOfBed === 0 || amenitie === '' || priceNight === '') {
+      if(checkInDate === '' || checkOutDate === '' || roomType === '' || occupancy === 0 || noOfRoom === 0 || roomSize === '' || noOfBed === 0 || amenitie === [] || priceNight === '' || imgUpload == null) {    
         setErrorMsg("Fill all fields!");
           return
       }
-      if(imgUpload == null) return;
-      setErrorMsg('');
+      
+      // Validate CheckOutDate is greater than CheckInDate
+      if (checkInDate !== '' && checkOutDate !== '') {
+        if (Date.parse(checkInDate) > Date.parse(checkOutDate)) {
+            setErrorMsg("Check Out Date must be greater than Check In Date!");
+            return
+        }
+    }
+
+    setErrorMsg('');
 
       const imageRef = ref(storage, `images/${imgUpload.name + v4()}`);
       uploadBytes(imageRef, imgUpload).then(() => {
-        alert('Image Uploaded!')
       })
 
         // Add room booking infomation to firestore --- bookroom
@@ -103,7 +108,8 @@ function BookRoom() {
           console.log('Book Room Data: ' + checkInDate, checkOutDate, roomType, occupancy, noOfRoom, roomSize, noOfBed, amenitie, priceNight);   
         }).catch(err => console.log(err.message));
 
-      console.log('Room Book successfully!');
+      // Navigate to Rooms Page
+      navigate('/rooms')
   } 
 
   return (
@@ -113,7 +119,7 @@ function BookRoom() {
 
       {/* Book Room Form */}
       <div className={dashboardStyles.containerRight}>
-        <form className={dashboardStyles.form} onSubmit={handleSignup}>
+        <form className={dashboardStyles.form} onSubmit={handleBookRoom}>
           <h3 className={dashboardStyles.titleRight}>Book Room</h3>
             <div className="form-group row my-2">
                 <label className="col-sm-5 col-form-label">Check-In Date</label>
@@ -191,12 +197,9 @@ function BookRoom() {
             <div className="form-group row my-2">
                 <label className="col-sm-5 col-form-label">Amenities</label>
                 <div className="col-sm-7">
-                    <select multiple={true} value={amenitie} onChange={(e)=> {handleSelect(e.target.selectedOptions)}}>
-                      {amenities.map((ameni, key) => (
-                        <option key={key} value={ameni.value}>{ameni.label}</option>
-                      ))}
-                    </select> 
-                    {/* <Select isMulti={true} options={amenities} value={amenitie} onChange={(e)=> {handleSelect(e.target.selectedOptions)}} ></Select> */}
+                    <Select isMulti={true} options={amenities} 
+                      value={amenities.filter(obj => amenitie.includes(obj.value))}
+                      onChange={handleChange} />
                 </div>
             </div>
             <div className="form-group row my-2">
@@ -212,6 +215,7 @@ function BookRoom() {
             <div className="form-group my-2">
                 <label className="col-form-label">Upload Image</label>
                     <input type="file" className="form-control" 
+                      id= 'imageUrl'
                       onChange = {(e) => {setImgUpload(e.target.files[0])}}
                     />
             </div>
@@ -219,7 +223,7 @@ function BookRoom() {
             <b className={styles.error}>{errorMsg}</b>
             
             <div className="form-group row">
-                <button type="bookNow" className="col-10 btn btn-primary">
+                <button type="submit" className="col-10 btn btn-primary">
                   Book Now
                 </button>
             </div>

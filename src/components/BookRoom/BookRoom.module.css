@@ -10,12 +10,10 @@ label {
   font-size: 0.875rem;
   color: rgb(175, 15, 15);
 }
+
 button {
   margin-left: 7%;
   margin-right: 7%;
-}
-button:disabled {
-  background-color: grey !important;
 }
 
 img {

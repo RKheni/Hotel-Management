@@ -15,7 +15,6 @@ function Signup() {
   const [confirmPassword,setConfirmPassword] = useState('');
 
   const [errorMsg, setErrorMsg] = useState('');
-  // const [submitButtonDisabled, setSubmitButtonDisabled] = useState(false);
 
   const handleInputChange = e => {
     const {id , value} = e.target;
@@ -43,13 +42,10 @@ function Signup() {
         }
         setErrorMsg('');
 
-        // setSubmitButtonDisabled(true);
-
         if (password === confirmPassword){
           // Create a New user in Firestore Authentication
           createUserWithEmailAndPassword(auth, email, password)
           .then(async(res) => {
-            // setSubmitButtonDisabled(false);
             const user = res.user;
             await updateProfile(user, {
               displayName: fullName,
@@ -64,7 +60,6 @@ function Signup() {
             // Navigate to Home page
             navigate('/');
           }).catch((err) => {
-            // setSubmitButtonDisabled(false);
             setErrorMsg(err.message)
           });
 
@@ -131,12 +126,9 @@ function Signup() {
             <br/>
             <b className={styles.error}>{errorMsg}</b>
           </div>
+
           <div className="d-grid gap-2 mt-3">
-            <button type="submit" className="btn btn-primary" 
-            // disabled={submitButtonDisabled}
-            >
-              Sign Up
-            </button>
+            <button type="submit" className="btn btn-primary"> Sign Up </button>
           </div>
         </div>
       </form>

@@ -29,17 +29,29 @@ button:hover {
     margin-bottom: 3px;
 }
 
+.containerRight {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-right: 2%;
+    padding-top: 2%;
+    margin-top: 3%;
+    margin-left: 1%;
+}
+  
 .form {
     width: flex;
-    max-width: 1050px;
+    max-width: 100%;
+    height: flex;
+    max-height: 100%;
     box-shadow: rgb(0 0 0 / 16%) 1px 1px 10px;
     padding: 3% 2% 2% 2%;
     border-radius: 8px;
     background-color: white;
-  }
+    margin-left: 15%;
+}
 
-  table, tr, th {
+table, tr, th {
     border: 1px solid black;
     border-collapse: collapse;
   }
-
